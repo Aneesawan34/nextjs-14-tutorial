@@ -11,12 +11,29 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  auth,
+  dashboard,
 }: {
   children: React.ReactNode;
+  auth: React.ReactNode;
+  dashboard: React.ReactNode;
 }) {
+  const isLoggedIn = true;
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {isLoggedIn ? (
+          <>
+            {children}
+            {dashboard}
+          </>
+        ) : (
+          <>
+            {children}
+            {auth}
+          </>
+        )}
+      </body>
     </html>
   );
 }
